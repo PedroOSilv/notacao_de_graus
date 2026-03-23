@@ -17,7 +17,7 @@
   const MAJOR_SCALE_INTERVALS = [0, 2, 4, 5, 7, 9, 11];
 
   /** Degree labels for display (Roman numerals with quality) */
-  const DEGREE_LABELS = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VIIº'];
+  const DEGREE_LABELS = ['I', 'ii', 'iii', 'IV', 'V', 'vi', 'viiº'];
 
   /** Chord suffixes for each degree */
   const DEGREE_SUFFIXES = ['', 'm', 'm', '', '', 'm', 'º'];
