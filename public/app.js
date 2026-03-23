@@ -19,6 +19,9 @@
   /** Degree labels for display (Roman numerals with quality) */
   const DEGREE_LABELS = ['I', 'ii', 'iii', 'IV', 'V', 'vi', 'viiº'];
 
+  /** Numeric labels for display (Nashville Number System) */
+  const NUMERIC_LABELS = ['1', '2m', '3m', '4', '5', '6m', '7º'];
+
   /** Chord suffixes for each degree */
   const DEGREE_SUFFIXES = ['', 'm', 'm', '', '', 'm', 'º'];
 
@@ -218,7 +221,7 @@
         'class': 'inner-ring-text',
         'style': 'transform-origin: ' + pos.x + 'px ' + pos.y + 'px;'
       });
-      text.textContent = DEGREE_LABELS[i];
+      text.textContent = NUMERIC_LABELS[i];
       innerRingSvg.appendChild(text);
 
       // Connecting dot
@@ -283,11 +286,24 @@
   function updateChordTable(tonicIdx) {
     chordTable.innerHTML = '';
 
-    // Header row
-    var headerLabel = document.createElement('div');
-    headerLabel.className = 'chord-table__cell chord-table__cell--header chord-table__cell--label';
-    headerLabel.textContent = 'GRAU';
-    chordTable.appendChild(headerLabel);
+    // Row 1: Numbers (Nashville)
+    var numLabel = document.createElement('div');
+    numLabel.className = 'chord-table__cell chord-table__cell--header chord-table__cell--label';
+    numLabel.textContent = 'NÚMERO';
+    chordTable.appendChild(numLabel);
+
+    NUMERIC_LABELS.forEach(function (label) {
+      var cell = document.createElement('div');
+      cell.className = 'chord-table__cell chord-table__cell--header chord-table__cell--degree';
+      cell.textContent = label;
+      chordTable.appendChild(cell);
+    });
+
+    // Row 2: Roman Numerals
+    var romLabel = document.createElement('div');
+    romLabel.className = 'chord-table__cell chord-table__cell--header chord-table__cell--label';
+    romLabel.textContent = 'ROMANO';
+    chordTable.appendChild(romLabel);
 
     DEGREE_LABELS.forEach(function (label) {
       var cell = document.createElement('div');
@@ -296,7 +312,7 @@
       chordTable.appendChild(cell);
     });
 
-    // Chord row
+    // Row 3: Chords
     var chordLabel = document.createElement('div');
     chordLabel.className = 'chord-table__cell chord-table__cell--label';
     chordLabel.textContent = 'ACORDE';
